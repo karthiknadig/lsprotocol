@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-use serde::{Deserialize, Serialize};
 use serde_repr::*;
+use serde::{Serialize, Deserialize};
 
 /// This type allows extending any string enum to support custom values.
 #[derive(Serialize, Deserialize, PartialEq, Debug)]
@@ -13,6 +13,7 @@ pub enum CustomStringEnum<T> {
     Custom(String),
 }
 
+
 /// This type allows extending any integer enum to support custom values.
 #[derive(Serialize, Deserialize, PartialEq, Debug)]
 #[serde(untagged)]
@@ -23,10 +24,11 @@ pub enum CustomIntEnum<T> {
     Custom(i64),
 }
 
+
 /// A set of predefined token types. This set is not fixed
 /// an clients can specify additional token types via the
 /// corresponding client capabilities.
-///
+/// 
 /// @since 3.16.0
 #[derive(Serialize, Deserialize, PartialEq, Debug)]
 pub enum SemanticTokenTypes {
@@ -101,12 +103,13 @@ pub enum SemanticTokenTypes {
     /// @since 3.17.0
     #[serde(rename = "decorator")]
     Decorator,
+
 }
 
 /// A set of predefined token modifiers. This set is not fixed
 /// an clients can specify additional token types via the
 /// corresponding client capabilities.
-///
+/// 
 /// @since 3.16.0
 #[derive(Serialize, Deserialize, PartialEq, Debug)]
 pub enum SemanticTokenModifiers {
@@ -139,10 +142,11 @@ pub enum SemanticTokenModifiers {
 
     #[serde(rename = "defaultLibrary")]
     DefaultLibrary,
+
 }
 
 /// The document diagnostic report kinds.
-///
+/// 
 /// @since 3.17.0
 #[derive(Serialize, Deserialize, PartialEq, Debug)]
 pub enum DocumentDiagnosticReportKind {
@@ -155,6 +159,7 @@ pub enum DocumentDiagnosticReportKind {
     /// returned report is still accurate.
     #[serde(rename = "unchanged")]
     Unchanged,
+
 }
 
 /// Predefined error codes.
@@ -176,6 +181,7 @@ pub enum ErrorCodes {
     ServerNotInitialized = -32002,
 
     UnknownErrorCode = -32001,
+
 }
 
 #[derive(Serialize_repr, Deserialize_repr, PartialEq, Debug)]
@@ -185,14 +191,14 @@ pub enum LSPErrorCodes {
     /// method name was known and the parameters were valid. The error
     /// message should contain human readable information about why
     /// the request failed.
-    ///
+    /// 
     /// @since 3.17.0
     RequestFailed = -32803,
 
     /// The server cancelled the request. This error code should
     /// only be used for requests that explicitly support being
     /// server cancellable.
-    ///
+    /// 
     /// @since 3.17.0
     ServerCancelled = -32802,
 
@@ -201,7 +207,7 @@ pub enum LSPErrorCodes {
     /// NOT send this error code if it detects a content change
     /// in it unprocessed messages. The result even computed
     /// on an older state might still be useful for the client.
-    ///
+    /// 
     /// If a client decides that a result is not of any use anymore
     /// the client should cancel the request.
     ContentModified = -32801,
@@ -209,6 +215,7 @@ pub enum LSPErrorCodes {
     /// The client has canceled a request and a server as detected
     /// the cancel.
     RequestCancelled = -32800,
+
 }
 
 /// A set of predefined range kinds.
@@ -225,6 +232,7 @@ pub enum FoldingRangeKind {
     /// Folding range for a region (e.g. `#region`)
     #[serde(rename = "region")]
     Region,
+
 }
 
 /// A symbol kind.
@@ -282,20 +290,22 @@ pub enum SymbolKind {
     Operator = 25,
 
     TypeParameter = 26,
+
 }
 
 /// Symbol tags are extra annotations that tweak the rendering of a symbol.
-///
+/// 
 /// @since 3.16
 #[derive(Serialize_repr, Deserialize_repr, PartialEq, Debug)]
 #[repr(i64)]
 pub enum SymbolTag {
     /// Render a symbol as obsolete, usually using a strike-out.
     Deprecated = 1,
+
 }
 
 /// Moniker uniqueness level to define scope of the moniker.
-///
+/// 
 /// @since 3.16.0
 #[derive(Serialize, Deserialize, PartialEq, Debug)]
 pub enum UniquenessLevel {
@@ -318,10 +328,11 @@ pub enum UniquenessLevel {
     /// The moniker is globally unique
     #[serde(rename = "global")]
     Global,
+
 }
 
 /// The moniker kind.
-///
+/// 
 /// @since 3.16.0
 #[derive(Serialize, Deserialize, PartialEq, Debug)]
 pub enum MonikerKind {
@@ -337,10 +348,11 @@ pub enum MonikerKind {
     /// variable of a function, a class not visible outside the project, ...)
     #[serde(rename = "local")]
     Local,
+
 }
 
 /// Inlay hint kinds.
-///
+/// 
 /// @since 3.17.0
 #[derive(Serialize_repr, Deserialize_repr, PartialEq, Debug)]
 #[repr(i64)]
@@ -350,6 +362,7 @@ pub enum InlayHintKind {
 
     /// An inlay hint that is for a parameter.
     Parameter = 2,
+
 }
 
 /// The message type
@@ -367,6 +380,7 @@ pub enum MessageType {
 
     /// A log message.
     Log = 4,
+
 }
 
 /// Defines how the host (editor) should sync
@@ -385,6 +399,7 @@ pub enum TextDocumentSyncKind {
     /// After that only incremental updates to the document are
     /// send.
     Incremental = 2,
+
 }
 
 /// Represents reasons why a text document is saved.
@@ -400,6 +415,7 @@ pub enum TextDocumentSaveReason {
 
     /// When the editor lost focus.
     FocusOut = 3,
+
 }
 
 /// The kind of a completion entry.
@@ -455,17 +471,19 @@ pub enum CompletionItemKind {
     Operator = 24,
 
     TypeParameter = 25,
+
 }
 
 /// Completion item tags are extra annotations that tweak the rendering of a completion
 /// item.
-///
+/// 
 /// @since 3.15.0
 #[derive(Serialize_repr, Deserialize_repr, PartialEq, Debug)]
 #[repr(i64)]
 pub enum CompletionItemTag {
     /// Render a completion as obsolete, usually using a strike-out.
     Deprecated = 1,
+
 }
 
 /// Defines whether the insert text in a completion item should be interpreted as
@@ -477,19 +495,20 @@ pub enum InsertTextFormat {
     PlainText = 1,
 
     /// The primary text to be inserted is treated as a snippet.
-    ///
+    /// 
     /// A snippet can define tab stops and placeholders with `$1`, `$2`
     /// and `${3:foo}`. `$0` defines the final tab stop, it defaults to
     /// the end of the snippet. Placeholders with equal identifiers are linked,
     /// that is typing in one will update others too.
-    ///
+    /// 
     /// See also: https://microsoft.github.io/language-server-protocol/specifications/specification-current/#snippet_syntax
     Snippet = 2,
+
 }
 
 /// How whitespace and indentation is handled during completion
 /// item insertion.
-///
+/// 
 /// @since 3.16.0
 #[derive(Serialize_repr, Deserialize_repr, PartialEq, Debug)]
 #[repr(i64)]
@@ -504,11 +523,12 @@ pub enum InsertTextMode {
     /// The editor adjusts leading whitespace of new lines so that
     /// they match the indentation up to the cursor of the line for
     /// which the item is accepted.
-    ///
+    /// 
     /// Consider a line like this: <2tabs><cursor><3tabs>foo. Accepting a
     /// multi line completion item is indented using 2 tabs and all
     /// following lines inserted will be indented using 2 tabs as well.
     AdjustIndentation = 2,
+
 }
 
 /// A document highlight kind.
@@ -523,6 +543,7 @@ pub enum DocumentHighlightKind {
 
     /// Write-access of a symbol, like writing to a variable.
     Write = 3,
+
 }
 
 /// A set of predefined code action kinds
@@ -541,9 +562,9 @@ pub enum CodeActionKind {
     Refactor,
 
     /// Base kind for refactoring extraction actions: 'refactor.extract'
-    ///
+    /// 
     /// Example extract actions:
-    ///
+    /// 
     /// - Extract method
     /// - Extract function
     /// - Extract variable
@@ -553,9 +574,9 @@ pub enum CodeActionKind {
     RefactorExtract,
 
     /// Base kind for refactoring inline actions: 'refactor.inline'
-    ///
+    /// 
     /// Example inline actions:
-    ///
+    /// 
     /// - Inline function
     /// - Inline variable
     /// - Inline constant
@@ -564,9 +585,9 @@ pub enum CodeActionKind {
     RefactorInline,
 
     /// Base kind for refactoring rewrite actions: 'refactor.rewrite'
-    ///
+    /// 
     /// Example rewrite actions:
-    ///
+    /// 
     /// - Convert JavaScript function to class
     /// - Add or remove parameter
     /// - Encapsulate field
@@ -577,7 +598,7 @@ pub enum CodeActionKind {
     RefactorRewrite,
 
     /// Base kind for source actions: `source`
-    ///
+    /// 
     /// Source code actions apply to the entire file.
     #[serde(rename = "source")]
     Source,
@@ -587,13 +608,14 @@ pub enum CodeActionKind {
     SourceOrganizeImports,
 
     /// Base kind for auto-fix source actions: `source.fixAll`.
-    ///
+    /// 
     /// Fix all actions automatically fix errors that have a clear fix that do not require user input.
     /// They should not suppress errors or perform unsafe fixes such as generating new types or classes.
-    ///
+    /// 
     /// @since 3.15.0
     #[serde(rename = "source.fixAll")]
     SourceFixAll,
+
 }
 
 #[derive(Serialize, Deserialize, PartialEq, Debug)]
@@ -609,11 +631,12 @@ pub enum TraceValues {
     /// Verbose message tracing.
     #[serde(rename = "verbose")]
     Verbose,
+
 }
 
 /// Describes the content type that a client supports in various
 /// result literals like `Hover`, `ParameterInfo` or `CompletionItem`.
-///
+/// 
 /// Please note that `MarkupKinds` must not start with a `$`. This kinds
 /// are reserved for internal usage.
 #[derive(Serialize, Deserialize, PartialEq, Debug)]
@@ -625,10 +648,11 @@ pub enum MarkupKind {
     /// Markdown is supported as a content format
     #[serde(rename = "markdown")]
     Markdown,
+
 }
 
 /// A set of predefined position encoding kinds.
-///
+/// 
 /// @since 3.17.0
 #[derive(Serialize, Deserialize, PartialEq, Debug)]
 pub enum PositionEncodingKind {
@@ -637,19 +661,20 @@ pub enum PositionEncodingKind {
     UTF8,
 
     /// Character offsets count UTF-16 code units.
-    ///
+    /// 
     /// This is the default and must always be supported
     /// by servers
     #[serde(rename = "utf-16")]
     UTF16,
 
     /// Character offsets count UTF-32 code units.
-    ///
+    /// 
     /// Implementation note: these are the same as Unicode code points,
     /// so this `PositionEncodingKind` may also be used for an
     /// encoding-agnostic representation of character offsets.
     #[serde(rename = "utf-32")]
     UTF32,
+
 }
 
 /// The file event type
@@ -664,6 +689,7 @@ pub enum FileChangeType {
 
     /// The file got deleted.
     Deleted = 3,
+
 }
 
 #[derive(Serialize_repr, Deserialize_repr, PartialEq, Debug)]
@@ -677,6 +703,7 @@ pub enum WatchKind {
 
     /// Interested in delete events
     Delete = 4,
+
 }
 
 /// The diagnostic's severity.
@@ -694,24 +721,26 @@ pub enum DiagnosticSeverity {
 
     /// Reports a hint.
     Hint = 4,
+
 }
 
 /// The diagnostic tags.
-///
+/// 
 /// @since 3.15.0
 #[derive(Serialize_repr, Deserialize_repr, PartialEq, Debug)]
 #[repr(i64)]
 pub enum DiagnosticTag {
     /// Unused or unnecessary code.
-    ///
+    /// 
     /// Clients are allowed to render diagnostics with this tag faded out instead of having
     /// an error squiggle.
     Unnecessary = 1,
 
     /// Deprecated or obsolete code.
-    ///
+    /// 
     /// Clients are allowed to rendered diagnostics with this tag strike through.
     Deprecated = 2,
+
 }
 
 /// How a completion was triggered
@@ -728,10 +757,11 @@ pub enum CompletionTriggerKind {
 
     /// Completion was re-triggered as current completion list is incomplete
     TriggerForIncompleteCompletions = 3,
+
 }
 
 /// How a signature help was triggered.
-///
+/// 
 /// @since 3.15.0
 #[derive(Serialize_repr, Deserialize_repr, PartialEq, Debug)]
 #[repr(i64)]
@@ -744,10 +774,11 @@ pub enum SignatureHelpTriggerKind {
 
     /// Signature help was triggered by the cursor moving or by the document content changing.
     ContentChange = 3,
+
 }
 
 /// The reason why code actions were requested.
-///
+/// 
 /// @since 3.17.0
 #[derive(Serialize_repr, Deserialize_repr, PartialEq, Debug)]
 #[repr(i64)]
@@ -756,15 +787,16 @@ pub enum CodeActionTriggerKind {
     Invoked = 1,
 
     /// Code actions were requested automatically.
-    ///
+    /// 
     /// This typically happens when current selection in a file changes, but can
     /// also be triggered when file content changes.
     Automatic = 2,
+
 }
 
 /// A pattern kind describing if a glob pattern matches a file a folder or
 /// both.
-///
+/// 
 /// @since 3.16.0
 #[derive(Serialize, Deserialize, PartialEq, Debug)]
 pub enum FileOperationPatternKind {
@@ -775,10 +807,11 @@ pub enum FileOperationPatternKind {
     /// The pattern matches a folder only.
     #[serde(rename = "folder")]
     Folder,
+
 }
 
 /// A notebook cell kind.
-///
+/// 
 /// @since 3.17.0
 #[derive(Serialize_repr, Deserialize_repr, PartialEq, Debug)]
 #[repr(i64)]
@@ -788,6 +821,7 @@ pub enum NotebookCellKind {
 
     /// A code-cell is source code.
     Code = 2,
+
 }
 
 #[derive(Serialize, Deserialize, PartialEq, Debug)]
@@ -803,6 +837,7 @@ pub enum ResourceOperationKind {
     /// Supports deleting existing files and folders.
     #[serde(rename = "delete")]
     Delete,
+
 }
 
 #[derive(Serialize, Deserialize, PartialEq, Debug)]
@@ -827,6 +862,7 @@ pub enum FailureHandlingKind {
     /// guarantee that this is succeeding.
     #[serde(rename = "undo")]
     Undo,
+
 }
 
 #[derive(Serialize_repr, Deserialize_repr, PartialEq, Debug)]
@@ -835,10 +871,12 @@ pub enum PrepareSupportDefaultBehavior {
     /// The client's default behavior is to select the identifier
     /// according the to language's syntax rule.
     Identifier = 1,
+
 }
 
 #[derive(Serialize, Deserialize, PartialEq, Debug)]
 pub enum TokenFormat {
     #[serde(rename = "relative")]
     Relative,
+
 }
