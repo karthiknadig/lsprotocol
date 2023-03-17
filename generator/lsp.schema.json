@@ -511,7 +511,7 @@
                     "type": "string"
                 },
                 "extends": {
-                    "description": "Structures extended from. This structures form a polymorphic type hierarchy.",
+                    "description": "Structures extended from. This structures form a poly-morphic type hierarchy.",
                     "items": {
                         "$ref": "#/definitions/Type"
                     },
